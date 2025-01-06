@@ -24,11 +24,9 @@ const resolvers = {
         return await Book.find({}).populate('author')
       },
       allAuthors: async () => {
-        console.log('author.find')
         const author_list = await Author.find({})
         
         const book_list = await Book.find().populate('author')
-        console.log('book.find')
 
         author_list.forEach(a => {
           let count = 0
@@ -47,21 +45,6 @@ const resolvers = {
         return context.currentUser
       }
     },
-    /*
-    Author: {
-      bookCount: async ({name}) => {
-        let count = 0
-        const book_list = await Book.find().populate('author')
-        console.log('book.find')
-        book_list.forEach(book => {
-          if(book.author.name === name){
-            count++
-          }
-        });
-        return count
-      }
-    },
-    */
     Mutation: {
       addBook: async (root, args, context) => {
   
